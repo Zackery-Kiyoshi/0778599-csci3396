@@ -1,25 +1,26 @@
 #ifndef SCANNER
 #define SCANNER
 
+#include <iostream>;
 #include <string>;
+#include <utility>;
 #include <array>;
-using std::string;
-using std::pair;
+
 
 class scanner {
-
-    class OP {
-        int SR;
-        int VR;
-        int PR;
-        int NU;
+    
+    class opNode {
+        std::string opCode;
+        std::array<std::pair<char,int>, 4> op1;
+        std::array<std::pair<char,int>, 4> op2;
+        std::array<std::pair<char,int>, 4> op3;
+        opNode* nxt;
+        opNode* pre;
     }
     
     // linked list of Array[OPCode, OP1, OP2]
     
-    
 	/*
-
 	load r1 = > r2			r2 ? MEM(r1)				2
 	loadI x = > r2			r2 ? x						1
 	lshift r1, r2 = > r3	r3 ? r1  r2					1
@@ -30,9 +31,14 @@ class scanner {
 	rshift r1, r2 = > r3	r3 ? r1  r2					1
 	output x				prints MEM(x) to stdout		1
 	nop						idle for one cycle			1
-
 	*/
 
+    
+    
+    int k = 100;
+    int len = 0;
+    opNode head;
+    
 	template<x>
 	std::array<char,x> readInput(string s) {
 		std::array(char, s.length) tmp;
@@ -318,6 +324,68 @@ class scanner {
 		}
 	}
 
+    
+    
+    
+    
+    void sillyCheck(){
+        
+    }
+    
+
+    
+    void prettyPrint(){
+        opNode cur = head;
+        for( int i = 0; i < len; i++ ){
+            switch( cur.opNode ){
+                case "load":
+                    std::cout << "load " << cur.op1.first << cur.op1.second << " => " << cur.op3.first << cur.op3.second << "\n" std::endl;
+                break;
+                case "loadI":
+                    std::cout << "loadI " << cur.op1.first << cur.op1.second << " => " << cur.op3.first << cur.op3.second << "\n" std::endl;
+                break;
+                case "store":
+                    std::cout << "store " << cur.op1.first << cur.op1.second << " => " << cur.op2.first << cur.op2.second << "\n" std::endl;
+                break;
+                case "add":
+                    std::cout << "add " << cur.op1.first << cur.op1.second << ", " << cur.op2.first << cur.op2.second << " => " << cur.op3.first << cur.op3.second << "\n" std::endl;
+                break;
+                case "sub":
+                    std::cout << "sub " << cur.op1.first << cur.op1.second << ", " << cur.op2.first << cur.op2.second << " => " << cur.op3.first << cur.op3.second << "\n" std::endl;
+                break;
+                case "mult":
+                    std::cout << "mult " << cur.op1.first << cur.op1.second << ", " << cur.op2.first << cur.op2.second << " => " << cur.op3.first << cur.op3.second << "\n" std::endl;
+                break;
+                case "lshift":
+                    std::cout << "lshift " << cur.op1.first << cur.op1.second << ", " << cur.op2.first << cur.op2.second << " => " << cur.op3.first << cur.op3.second << "\n" std::endl;
+                break;
+                case "rshift":
+                    std::cout << "rshift " << cur.op1.first << cur.op1.second << ", " << cur.op2.first << cur.op2.second << " => " << cur.op3.first << cur.op3.second << "\n" std::endl;
+                break;
+                case "output":
+                    std::cout << "output r" << cur.op1 << "\n" std::endl;
+                break;
+                case "nop":
+                    std::cout << "nop \n" std::endl;
+                break;
+            }
+            cur = cur.next;
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 };
 
 #endif
