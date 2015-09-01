@@ -38,11 +38,11 @@ class scanner {
     int k = 100;
     int len = 0;
     opNode head;
-    
-	template<x>
-	std::array<char,x> readInput(string s) {
-		std::array(char, s.length) tmp;
 
+    
+	
+	std::array<char,int> readInput(string s) {
+		std::array(char, s.length) tmp;
 		int t = 0;
 		bool com = false;
 		for (int i = 0; i < s.length; i++) {
@@ -53,28 +53,35 @@ class scanner {
 				tmp[t] = s[i];
 				t++;
 			}
-
 		}
-
 		return tmp;
 	}
 
 	bool whitespace(char c) {
 		if (c == '  ') {
-
+			return true;
 		}
 		else if (c == '	') {
-
+			return true;
 		}
 		else {
-			false;
+			return false;
 		}
 	}
 
+	bool checkCom(){
+		if (c == '/'){
+			if (c == '/'){
+				return true;
+			}
+		}
+		return false;
+	}
 
-	// scans the string for reading
+
+	// scans the string for reading (OPcode)
 	// completed: change the input
-	pair<string,string> scan(string s) {
+	pair<string,string> scanOPcode(string s) {
 		char cur;
 		if ('l' == cur) {
 			if ('o' == cur) {
@@ -85,6 +92,10 @@ class scanner {
 						}
 						else if ('I' == cur) {
 							if (whitespace(cur)) {
+
+								//
+
+
 								return std::pair<string, string>("loadI", "loadI");
 							}
 							else {
@@ -109,6 +120,9 @@ class scanner {
 						if ('f' == cur) {
 							if ('t' == cur) {
 								if (whitespace(cur)) {
+
+
+
 									return std::pair<string, string>("lshift", "lshift");
 								}
 								else {
@@ -142,6 +156,9 @@ class scanner {
 					if ('r' == cur) {
 						if ('e' == cur) {
 							if (whitespace(cur)) {
+
+
+
 								return std::pair<string, string>("store", "store");
 							}
 							else {
@@ -177,6 +194,10 @@ class scanner {
 			if ('d' == cur) {
 				if ('d' == cur) {
 					if (whitespace(cur)) {
+
+
+
+
 						return std::pair<string, string>("add", "add");
 					}
 					else {
@@ -197,6 +218,9 @@ class scanner {
 				if ('l' == cur) {
 					if ('t' == cur) {
 						if (whitespace(cur)) {
+
+
+
 							return std::pair<string, string>("mult", "mult");
 						}
 						else {
@@ -224,6 +248,9 @@ class scanner {
 						if ('f' == cur) {
 							if ('t' == cur) {
 								if (whitespace(cur)) {
+
+
+
 									return std::pair<string, string>("rshift", "rshift");
 								}
 								else {
@@ -257,6 +284,9 @@ class scanner {
 					if ('p' == cur) {
 						if ('u' == cur) {
 							if ('t' == cur) {
+
+
+
 								return std::pair<string, string>("output", "output");
 							}
 							else {
@@ -283,6 +313,9 @@ class scanner {
 		else if ('n' == cur) {
 			if ('o' == cur) {
 				if ('p' == cur) {
+
+
+
 					return std::pair<string, string>("nop", "nop");
 				}
 				else {
@@ -329,7 +362,14 @@ class scanner {
     
     
     void sillyCheck(){
-        
+		opNode cur = head;
+		for (int i = 0; i < len; i++){
+
+
+
+
+			cur = head.next;
+		}
     }
     
 
